@@ -12,7 +12,7 @@ composer require peterujah/broken-links-scanner
 
 ## CLI Usage
 
-![CLI Example](https://raw.githubusercontent.com/peterujah/broken-links-scanner/refs/heads/main/broken.gif)
+![CLI Example](https://raw.githubusercontent.com/peterujah/broken-links-scanner/refs/heads/main/broken.png)
 Use the CLI script to scan a website for broken links.
 
 ### Options:
