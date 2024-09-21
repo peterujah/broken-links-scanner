@@ -44,7 +44,7 @@ Initialize `Scanner` with the necessary parameters and register your custom clas
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use \Peterujah\BrokenLink\Scanner;
+use \Peterujah\BrokenLinks\Scanner;
 
 // Define the starting URL for the scan
 $url = 'https://luminova.ng/';
