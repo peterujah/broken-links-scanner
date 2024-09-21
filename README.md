@@ -42,7 +42,7 @@ Initialize `Scanner` with the necessary parameters and register your custom clas
 #### 1. Basic Usage
 
 ```php
-require_once __DIR__ . '/scanner/BrokenLinks.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use \Peterujah\BrokenLink\Scanner;
 
