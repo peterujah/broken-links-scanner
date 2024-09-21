@@ -1,0 +1,84 @@
+#!/usr/bin/php
+<?php
+/**
+ * Luminova Framework
+ * The Luminova Framework offers high-performance HMVC (Hierarchical Model-View-Controller) 
+ * and MVC (Model-View-Controller) architectures designed for robust web applications. 
+ * 
+ * It combines the strengths of both architectures to enhance modularity, maintainability, 
+ * and scalability, enabling developers to build efficient and dynamic web solutions.
+ *
+ * @package Luminova
+ * @author Ujah Chigozie Peter
+ * @copyright (c) Nanoblock Technology Ltd
+ * @license See LICENSE file
+ * @link http://luminova.ng
+ */
+require_once __DIR__ . '/scanner/BrokenLinks.php';
+
+use \Peterujah\BrokenLink\Scanner;
+/**
+ * CLI Script to scan for broken links on a website.
+ * Usage: php broken --url="https://luminova.ng/" --timeout=10 [--host="luminova.ng"] [--path="/path/to/save"] [--output=1] [--limit=0]
+ */
+//php broken --url=https://luminova.ng/ --host="luminova.ng"
+// Parse CLI options
+$options = getopt("", [
+    "url:",     // Mandatory start URL (e.g. "http://luminova.ng/docs/" or "http://luminova.ng/")
+    "host:",       //  Mandatory host name (e.g, "luminova.ng")
+    "path::",     // Optional path to save scans
+    "output::",   // Optional output flag to print broken links (1 or 0)
+    "timeout::",  // Optional timeout in seconds
+    "limit::"     // Optional maximin number of scans
+]);
+
+// Check if a URL is provided
+if (empty($options['url']) || empty($options['host'])) {
+    echo "Usage: php broken --url=\"https://luminova.ng/page\" [--host=\"luminova.ng\"] [--timeout=10] [--path=\"/path/to/save\"] [--output=1]\n";
+    exit(1);
+}
+
+// Extract values from options
+$url   = $options['url'];
+$host    = $options['host'] ?? '';
+$timeout    = isset($options['timeout']) ? (int) $options['timeout'] : 0;
+$limit      = isset($options['limit']) ? (int) $options['limit'] : 0;
+$path       = $options['path'] ?? __DIR__ . '/scanner/logs/';
+$output     = (isset($options['output']) && $options['output'] == 1);
+
+if (!is_dir($path) && !mkdir($path, 0755, true)) {
+    echo "Error: Unable to create or access path: $path\n";
+    exit(1);
+}
+
+// Create an instance of the BrokenLinks class
+$scanner = new Scanner($url, $host, $limit);
+$scanner->setPath($path);
+$scanner->cli(true);
+
+// Start the scan process
+
+
+// Wait for the process to complete or until timeout
+// Output results if requested
+if($timeout > 0){
+    try {
+        echo "Waiting for the scan to complete...\n";
+        $scanner->wait($timeout, function(Scanner $scanner) use($output){
+            if ($output) {
+                echo "\nBroken Links Found:\n";
+                print_r($scanner->getBrokenLinks());
+            }
+            exit(1);
+        });
+    } catch (RuntimeException $e) {
+        echo "Error: " . $e->getMessage() . "\n";
+        exit(1);
+    }
+}else{
+    $scanner->start();
+    echo "\nBroken Links Found:\n";
+    print_r($scanner->getBrokenLinks());
+}
+
+exit(0);
