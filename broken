@@ -14,14 +14,14 @@
  * @license See LICENSE file
  * @link http://luminova.ng
  */
-require_once __DIR__ . '/scanner/BrokenLinks.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use \Peterujah\BrokenLink\Scanner;
 /**
  * CLI Script to scan for broken links on a website.
  * Usage: php broken --url="https://luminova.ng/" --timeout=10 [--host="luminova.ng"] [--path="/path/to/save"] [--output=1] [--limit=0]
  */
-//php broken --url=https://luminova.ng/ --host="luminova.ng"
+
 // Parse CLI options
 $options = getopt("", [
     "url:",     // Mandatory start URL (e.g. "http://luminova.ng/docs/" or "http://luminova.ng/")
