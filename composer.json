@@ -1,0 +1,32 @@
+{
+    "name": "peterujah/broken-links-scanner",
+    "type": "library",
+    "description": "A PHP library for scanning websites to identify broken links and extract relevant information.",
+    "homepage": "https://github.com/peterujah/broken-links-scanner",
+    "keywords": [
+        "library",
+        "link checker",
+        "PHP broken links scanner",
+        "PHP"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ujah Chigozie",
+            "email": "ujahchigozie@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "ext-curl": "*"
+    },
+    "suggest": {
+        "ext-curl": "Required for performing HTTP requests when scanning websites."
+    },
+    "autoload": {
+        "psr-4": { 
+            "PeterUjah\\BrokenLinks\\": "src/" 
+        }
+    },
+    "prefer-stable": true
+}
