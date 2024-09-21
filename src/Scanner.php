@@ -13,7 +13,7 @@
  * @license See LICENSE file
  * @link http://luminova.ng
  */
-namespace Peterujah\BrokenLink;
+namespace Peterujah\BrokenLinks;
 
 use \DOMDocument;
 use \RuntimeException;
