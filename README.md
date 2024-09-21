@@ -17,10 +17,10 @@ Use the CLI script to scan a website for broken links.
 ### Options:
 
 - `--url` **(required)**: The starting URL for the scan (e.g., `http://luminova.ng/docs/` or `http://luminova.ng/`).
-- `--host` **(required)**: The hostname of the URL (e.g., `luminova.ng`).
-- `--path` **(optional)**: Path to save the scan results. If not specified, results will be printed to the console.
-- `--output` **(optional)**: Flag to control output of broken links. Use `1` to print, or `0` to suppress output (default: `1`).
-- `--timeout` **(optional)**: Maximum time in seconds to wait for the scan to complete (default: `30`).
+- `--host` **(required)**: The scan URL hostname (e.g., `luminova.ng`).
+- `--path` **(optional)**: Path to save the scan results.
+- `--output` **(optional)**: Flag to control output of broken links. Use `1` to print, or `0` to suppress output (default: `0`).
+- `--timeout` **(optional)**: Maximum time in seconds to wait for the scan to complete (default: `0`).
 - `--limit` **(optional)**: Maximum number of scans to perform. Use `0` to scan all URLs (default: `0`).
 
 ### Example Usage:
@@ -28,7 +28,7 @@ Use the CLI script to scan a website for broken links.
 To start a scan, run the following command:
 
 ```bash
-php broken --url="https://luminova.ng/" --timeout=10 [--host="luminova.ng"] [--path="/path/to/save"] [--output=1] [--limit=0]
+php broken --url="https://luminova.ng/" --host="luminova.ng" [--timeout=10] [--path="/scanner/logs"] [--output=0] [--limit=0]
 ```
 
 ---
