@@ -19,7 +19,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use \Peterujah\BrokenLinks\Scanner;
 /**
  * CLI Script to scan for broken links on a website.
- * Usage: php broken --url="https://luminova.ng/" --timeout=10 [--host="luminova.ng"] [--path="/path/to/save"] [--output=1] [--limit=0]
+ * Usage: php broken --url="https://luminova.ng/" --host="luminova.ng" [--timeout=10] [--path="/path/to/save"] [--output=1] [--limit=0]
  */
 
 // Parse CLI options
@@ -75,7 +75,7 @@ if($timeout > 0){
         echo "Error: " . $e->getMessage() . "\n";
         exit(1);
     }
-}else{
+}elseif($output){
     $scanner->start();
     echo "\nBroken Links Found:\n";
     print_r($scanner->getBrokenLinks());
