@@ -75,10 +75,12 @@ if($timeout > 0){
         echo "Error: " . $e->getMessage() . "\n";
         exit(1);
     }
-}elseif($output){
+}else{
     $scanner->start();
-    echo "\nBroken Links Found:\n";
-    print_r($scanner->getBrokenLinks());
+    if($output){
+        echo "\nBroken Links Found:\n";
+        print_r($scanner->getBrokenLinks());
+    }
 }
 
 exit(0);
